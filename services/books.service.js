@@ -17,7 +17,7 @@ export const bookService = {
 // window.cs = bookService
 
 function query(filterBy = {}) {
-    return storageService.query(book_KEY)
+    return storageService.query(BOOK_KEY)
         .then(books => {
             if (filterBy.txt) {
                 const regExp = new RegExp(filterBy.txt, 'i')
