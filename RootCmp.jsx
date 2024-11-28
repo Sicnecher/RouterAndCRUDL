@@ -1,14 +1,19 @@
 
 import { AppHeader } from "./cmps/AppHeader.jsx"
 import { Home } from "./cmps/Home.jsx"
+const Router = ReactRouterDOM.HashRouter
+const { Routes, Route, Navigate } = ReactRouterDOM
 
 export function RootCmp() {
     return (
-        <section className="app main-layout">
+        <Router>
             <AppHeader />
-            <main>
-                <Home />
-            </main>
-        </section>
+            <Route path="/" element={<Navigate to="/home" />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/about" element={<AbouteUs />} />
+            <Route path="/book" element={<BookDetails />} />
+            <Route path="/book/:bookId" element={<BookIndex />} />
+            <Route path="/book/edit" element={<BookEdit />} />
+        </Router>
     )
 }
