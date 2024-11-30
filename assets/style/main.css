@@ -29,6 +29,11 @@ body {
 	color: var(--gray3);
 }
 
+body:hover{
+	cursor:default;
+}
+
+p,
 h1,
 h2,
 h3,
@@ -176,6 +181,10 @@ input:focus {
 
 .home {
 	font-size: 1em;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap:14px;
+	margin: 10px;
 }
 
 .app-header {
@@ -204,6 +213,40 @@ a.active {
 	color: rgb(241, 212, 241);
 	font-weight: 600;
 	text-decoration: underline;
+}
+
+.header-container{
+	display: flex;
+	justify-content: space-between;
+	.links-container{
+		display: flex;
+		gap: 10px;
+		font-family: 'Edu VIC WA NT Beginner', cursive;
+	}
+}
+
+.about-container{
+	text-align: center;
+}
+
+.book-home-container{
+	background-color: grey;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 10px;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.book-home-container img{
+	width: 180px;
+	height: 225px;
+	border-radius: 10px;
+}
+
+.book-home-container i{
+	color: blue;
 }
 
 
