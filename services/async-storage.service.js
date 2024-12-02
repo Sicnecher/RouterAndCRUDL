@@ -12,23 +12,13 @@ function query(entityType, delay = 200) {
 }
 
 function get(entityType, entityId) {
-  return query(entityType).then((entities) => {
-    const entity = entities.find((entity, idx) => {
-      if (entity.id === entityId) {
-        let data = { current: entity };
-        data = idx > 0 && { ...data, prevId: entities[idx - 1].id };
-        data = idx < entities.length - 1 && {
-          ...data,
-          nextId: entities[idx + 1].id,
-        };
-        return data;
-      }
-    });
+  return query(entityType).then(entities => {
+    const entity = entities.find(e => e.id === entityId)
     if (!entity)
-      throw new Error(
-        `Get failed, cannot find entity with id: ${entityId} in: ${entityType}`
-      );
-    return entity;
+        throw new Error(
+          `Get failed, cannot find entity with id: ${entityId} in: ${entityType}`
+        );
+      return entity;
   });
 }
 

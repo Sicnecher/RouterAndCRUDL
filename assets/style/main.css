@@ -239,6 +239,14 @@ a.active {
   color: blue;
 }
 
+.book-card{
+	background-color: brown;
+	padding: 16px;
+	padding-bottom: 4px;
+	box-shadow: black 1px 2px 2px 2px;
+	border-radius: 6px;
+}
+
 @media (max-width: 720px) {
   .app-header {
     color: var(--clr2bg-light);
