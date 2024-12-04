@@ -32,7 +32,9 @@ function query(filterBy = {}) {
   });
 }
 
-const get = async (bookId) => await storageService.get(BOOK_KEY, bookId).then(_setNextPrevBookId)
+async function get(bookId){
+  return await storageService.get(BOOK_KEY, bookId).then(_setNextPrevBookId)
+};
 
 function remove(bookId) {
     return storageService.remove(BOOK_KEY, bookId);

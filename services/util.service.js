@@ -113,3 +113,7 @@ function animateCSS(el, animation = "bounce") {
     el.addEventListener("animationend", handleAnimationEnd, { once: true });
   });
 }
+
+export function debounce(){
+  
+}

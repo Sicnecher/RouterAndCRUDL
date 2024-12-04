@@ -1,5 +1,5 @@
 import AppHeader from "./cmps/AppHeader.jsx";
-import Home from "./cmps/Home.jsx";
+import Home from "./cmps/book-components/BookIndex.jsx";
 import AboutUs from "./cmps/AboutUs.jsx";
 import BookDetails from "./cmps/book-components/BookDetails.jsx";
 import BookEdit from "./cmps/book-components/BookEdit.jsx";

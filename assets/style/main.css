@@ -239,12 +239,36 @@ a.active {
   color: blue;
 }
 
-.book-card{
-	background-color: brown;
-	padding: 16px;
-	padding-bottom: 4px;
-	box-shadow: black 1px 2px 2px 2px;
-	border-radius: 6px;
+.book-card {
+  background-color: brown;
+  padding: 16px;
+  padding-bottom: 4px;
+  box-shadow: black 1px 2px 2px 2px;
+  border-radius: 6px;
+}
+
+.filter-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  form {
+    section {
+      margin-bottom: 10px;
+    }
+    input{
+      border: none;
+      border-bottom: 1px solid black;
+    }
+  }
+}
+
+.onSale-sign{
+  background: linear-gradient(to bottom right, rgb(228, 108, 53), rgb(117, 58, 44));
+  padding: 8px;
+  padding-left: 40px;
+  padding-right: 40px;
+  box-shadow: 2px 2px 2px 0px;
+  border-radius: 6px;
 }
 
 @media (max-width: 720px) {

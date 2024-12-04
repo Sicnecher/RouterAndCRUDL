@@ -8,8 +8,8 @@ export default function Component() {
   const params = useParams();
   useEffect(() => {
     const fetch = async () => await bookService.get(params.bookId);
-    fetch().then(obj => {
-      console.log(obj.thumbnail)
+    fetch().then((obj) => {
+      console.log(obj);
       setData(obj);
       const pageCount = obj.pageCount;
       setReadingStatus(
@@ -34,33 +34,36 @@ export default function Component() {
           gap: 26,
         }}
       >
+        {data.listPrice.isOnSale && (
+          <div className="onSale-sign">
+            <h2>On Sale</h2>
+          </div>
+        )}
         <h1>{`Title: "${data.title}"`}</h1>
         <h4>{`Description: "${data.description}"`}</h4>
-        <div className="book-card">
-          <h1>
-            {2024 - data.publishedDate > 10
-              ? "Vintage"
-              : 2024 - data.publishedDate == 0 && "New"}
-          </h1>
-          <img
-            src={data.thumbnail}
-            alt="image"
-            width={250}
-            height={400}
-            style={{ borderRadius: 4 }}
-          />
-          <h4 style={{ color: readingStatus[0] }}>{readingStatus[1]}</h4>
-          <h4
-            style={{
-              color:
-                data.listPrice.amount > 150
-                  ? "red"
-                  : data.listPrice.amount < 20 && "green",
-            }}
-          >
-            {`Price: ${data.listPrice.amount}`}
-          </h4>
-        </div>
+        <h1>
+          {2024 - data.publishedDate > 10
+            ? "Vintage"
+            : 2024 - data.publishedDate == 0 && "New"}
+        </h1>
+        <img
+          src={data.thumbnail}
+          alt="image"
+          width={250}
+          height={400}
+          style={{ borderRadius: 4 }}
+        />
+        <h4 style={{ color: readingStatus[0] }}>{readingStatus[1]}</h4>
+        <h4
+          style={{
+            color:
+              data.listPrice.amount > 150
+                ? "red"
+                : data.listPrice.amount < 20 && "green",
+          }}
+        >
+          {`Price: ${data.listPrice.amount}`}
+        </h4>
       </section>
       <section>
         {data.prevId && (
@@ -68,6 +71,9 @@ export default function Component() {
             <button>PrevBook</button>
           </Link>
         )}
+        <Link to="/">
+          <button>Back to list</button>
+        </Link>
         {data.nextId && (
           <Link to={`/book/${data.nextId}`}>
             <button>NextBook</button>
