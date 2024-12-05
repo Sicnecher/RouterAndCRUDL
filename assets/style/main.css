@@ -319,8 +319,7 @@ a.active {
 .button-container {
   display: flex;
   justify-content: center;
-  background-color: antiquewhite;
-  button{
+  button {
     font-size: 20px;
     font-weight: bold;
   }
@@ -348,7 +347,12 @@ a.active {
   left: 50%;
   transform: translate(-50%, -50%);
   color: white; /* Text color */
-  background-color: rgba(0, 0, 0, 0.5); /* Optional semi-transparent background */
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Optional semi-transparent background */
   padding: 10px 20px;
   border-radius: 6px;
   text-align: center;
@@ -364,6 +368,28 @@ a.active {
 
 .image-container:hover .overlay-text {
   opacity: 1; /* Reveals the text */
+}
+
+.bookIndex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.book-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.filter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  input {
+    border: none;
+    border-bottom: 1px solid black;
+  }
 }
 
 @media (max-width: 720px) {

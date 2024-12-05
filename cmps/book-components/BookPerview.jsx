@@ -1,6 +1,6 @@
 const { Link } = ReactRouterDOM;
 
-export default function BookPerview({ bookData, shortDescription }) {
+export default function BookPerview({ bookData, shortDescription, removeBook }) {
   return (
     <section key={bookData.id} className="book-home-container">
       <h1>{`Title: ${bookData.title}`}</h1>

@@ -1,30 +1,35 @@
 import { bookService } from "../../services/book.service.js";
 import BooksList from "./BooksList.jsx";
 import BookFilter from "./BookFilter.jsx";
+
 const { useState, useEffect } = React;
 const { Link } = ReactRouterDOM;
 
 export default function Component() {
   const [booksList, setBooksList] = useState([]);
-  const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter());
+  const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter({ title: '', price: '' }));
+
   useEffect(() => {
-    const list = bookService.getAllBooks();
-    setBooksList(list);
-  }, []);
+    loadBooks();
+  }, [filterBy]);
 
-  async function removeBook(bookId) {
-    await bookService.remove(bookId).then(() => {
-      const filteredList = booksList.filter((x) => x.id != bookId);
-      setBooksList(filteredList);
-    });
-  }
+  const loadBooks = async () => {
+    const books = await bookService.query(filterBy);
+    setBooksList(books);
+  };
 
-  const onSetFilter = () => setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }));
-  
+  const removeBook = async (bookId) => {
+    await bookService.remove(bookId);
+    setBooksList((prevBooks) => prevBooks.filter((book) => book.id !== bookId));
+  };
+
+  const onSetFilter = (filter) => setFilterBy((prevFilter) => ({ ...prevFilter, ...filter }));
+
   return (
-    <div>
+    <div className="bookIndex-container">
       <BookFilter defaultFilter={filterBy} onSetFilter={onSetFilter} />
       <BooksList list={booksList} removeBook={removeBook} />
+      <Link to="/book/add"><button>Add Book</button></Link>
     </div>
   );
 }

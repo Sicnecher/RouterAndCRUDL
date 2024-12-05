@@ -114,6 +114,12 @@ function animateCSS(el, animation = "bounce") {
   });
 }
 
-export function debounce(){
-  
+export function debounce(func, time = 500) {
+  var timeoutId
+  return (...args) => {
+      clearTimeout(timeoutId)
+      timeoutId = setTimeout(() => {
+          func(...args)
+      }, time);
+  }
 }

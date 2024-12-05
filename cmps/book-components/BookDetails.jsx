@@ -1,15 +1,16 @@
 import { bookService } from "../../services/book.service.js";
-const { useParams, Link } = ReactRouterDOM;
+const { useParams, Link, useNavigate } = ReactRouterDOM;
 const { useEffect, useState } = React;
 
 export default function Component() {
   const [data, setData] = useState(null);
   const [readingStatus, setReadingStatus] = useState(null);
   const params = useParams();
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetch = async () => await bookService.get(params.bookId);
     fetch().then((obj) => {
-      console.log(obj);
       setData(obj);
       const pageCount = obj.pageCount;
       setReadingStatus(
@@ -20,11 +21,11 @@ export default function Component() {
           : pageCount < 100 && ["green", "Light Reading"]
       );
     });
-  }, []);
+  }, [params]);
   if (!data) return <h1>Loading...</h1>;
   return (
     <div>
-      {data.listPrice.isOnSale && (
+      {data.listPrice && data.listPrice.isOnSale && (
         <div className="onSale-sign">
           <h2>On Sale</h2>
         </div>
@@ -43,7 +44,7 @@ export default function Component() {
         />
         <section className="sub-data" gridArea="sub-data">
           <h1>
-            {2024 - data.publishedDate > 10
+            {data.publishedDate && 2024 - data.publishedDate > 10
               ? "Vintage"
               : 2024 - data.publishedDate == 0 && "New"}
           </h1>
@@ -51,7 +52,7 @@ export default function Component() {
           <h4
             style={{
               color:
-                data.listPrice.amount > 150
+                data.listPrice && data.listPrice.amount > 150
                   ? "red"
                   : data.listPrice.amount < 20 && "green",
             }}
@@ -64,7 +65,7 @@ export default function Component() {
       <section className="button-container">
         {data.prevId && (
           <Link to={`/book/${data.prevId}`}>
-            <button>PrevBook</button>
+            <button>Previous Book</button>
           </Link>
         )}
         <Link to="/">
@@ -72,7 +73,7 @@ export default function Component() {
         </Link>
         {data.nextId && (
           <Link to={`/book/${data.nextId}`}>
-            <button>NextBook</button>
+            <button>Next Book</button>
           </Link>
         )}
       </section>
