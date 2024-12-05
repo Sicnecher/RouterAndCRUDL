@@ -175,7 +175,7 @@ input:focus {
 .home {
   font-size: 1em;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 14px;
   margin: 10px;
 }
@@ -220,7 +220,6 @@ a.active {
 }
 
 .book-home-container {
-  background-color: grey;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -247,6 +246,15 @@ a.active {
   border-radius: 6px;
 }
 
+.book-data {
+  h1 {
+    font-size: 50px;
+  }
+  h4 {
+    font-size: 20px;
+  }
+}
+
 .filter-form-container {
   display: flex;
   flex-direction: column;
@@ -255,20 +263,107 @@ a.active {
     section {
       margin-bottom: 10px;
     }
-    input{
+    input {
       border: none;
       border-bottom: 1px solid black;
     }
   }
 }
 
-.onSale-sign{
-  background: linear-gradient(to bottom right, rgb(228, 108, 53), rgb(117, 58, 44));
+.onSale-sign {
+  background: linear-gradient(
+    to bottom right,
+    rgb(228, 108, 53),
+    rgb(117, 58, 44)
+  );
   padding: 8px;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 80px;
+  padding-right: 80px;
   box-shadow: 2px 2px 2px 0px;
   border-radius: 6px;
+  text-align: center;
+  margin: 16px;
+  justify-self: center;
+}
+
+.book-card-container {
+  margin-top: 50px;
+  justify-self: center;
+  display: grid;
+  grid-template-areas:
+    "img data data"
+    "sub-data sub-data sub-data";
+  border-radius: 10px;
+  background: linear-gradient(
+    to right bottom,
+    rgb(204, 131, 42),
+    rgb(224, 78, 78),
+    rgb(204, 131, 42)
+  );
+  width: 80vw;
+}
+
+.sub-data {
+  display: flex;
+  background-color: brown;
+  padding: 6px;
+  padding-right: 120px;
+  padding-left: 120px;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 20px;
+  grid-area: sub-data;
+  margin-bottom: 15px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  background-color: antiquewhite;
+  button{
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+
+.book-data {
+  padding: 10px;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+  width: fit-content; /* Ensures the container wraps around the image size */
+}
+
+.image {
+  display: block;
+  width: 100%; /* Keeps the image at its natural size */
+  transition: opacity 0.3s ease-in-out; /* Smooth transition for hover effect */
+}
+
+.overlay-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white; /* Text color */
+  background-color: rgba(0, 0, 0, 0.5); /* Optional semi-transparent background */
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 1.2em;
+  opacity: 0; /* Initially hidden */
+  pointer-events: none; /* Prevents interference with hover */
+  transition: opacity 0.3s ease-in-out;
+}
+
+.image-container:hover .image {
+  opacity: 0.5; /* Makes the image semi-transparent on hover */
+}
+
+.image-container:hover .overlay-text {
+  opacity: 1; /* Reveals the text */
 }
 
 @media (max-width: 720px) {

@@ -1,12 +1,12 @@
 import { bookService } from "../../services/book.service.js";
 import BooksList from "./BooksList.jsx";
-import BookFilter from "./BookFilter.jsx"
+import BookFilter from "./BookFilter.jsx";
 const { useState, useEffect } = React;
 const { Link } = ReactRouterDOM;
 
 export default function Component() {
   const [booksList, setBooksList] = useState([]);
-  const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
+  const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter());
   useEffect(() => {
     const list = bookService.getAllBooks();
     setBooksList(list);
@@ -19,9 +19,11 @@ export default function Component() {
     });
   }
 
+  const onSetFilter = () => setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }));
+  
   return (
     <div>
-      <BookFilter />
+      <BookFilter defaultFilter={filterBy} onSetFilter={onSetFilter} />
       <BooksList list={booksList} removeBook={removeBook} />
     </div>
   );

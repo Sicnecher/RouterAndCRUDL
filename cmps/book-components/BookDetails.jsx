@@ -24,48 +24,44 @@ export default function Component() {
   if (!data) return <h1>Loading...</h1>;
   return (
     <div>
-      <section
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          textAlign: "center",
-          alignItems: "center",
-          margin: "12px",
-          gap: 26,
-        }}
-      >
-        {data.listPrice.isOnSale && (
-          <div className="onSale-sign">
-            <h2>On Sale</h2>
-          </div>
-        )}
-        <h1>{`Title: "${data.title}"`}</h1>
-        <h4>{`Description: "${data.description}"`}</h4>
-        <h1>
-          {2024 - data.publishedDate > 10
-            ? "Vintage"
-            : 2024 - data.publishedDate == 0 && "New"}
-        </h1>
+      {data.listPrice.isOnSale && (
+        <div className="onSale-sign">
+          <h2>On Sale</h2>
+        </div>
+      )}
+      <section className="book-card-container">
+        <section className="book-data">
+          <h1>{`Title: "${data.title}"`}</h1>
+          <h4>{`Description: "${data.description}"`}</h4>
+        </section>
         <img
           src={data.thumbnail}
           alt="image"
           width={250}
           height={400}
-          style={{ borderRadius: 4 }}
+          style={{ borderTopLeftRadius: 4, gridArea: "img" }}
         />
-        <h4 style={{ color: readingStatus[0] }}>{readingStatus[1]}</h4>
-        <h4
-          style={{
-            color:
-              data.listPrice.amount > 150
-                ? "red"
-                : data.listPrice.amount < 20 && "green",
-          }}
-        >
-          {`Price: ${data.listPrice.amount}`}
-        </h4>
+        <section className="sub-data" gridArea="sub-data">
+          <h1>
+            {2024 - data.publishedDate > 10
+              ? "Vintage"
+              : 2024 - data.publishedDate == 0 && "New"}
+          </h1>
+          <h4 style={{ color: readingStatus[0] }}>{readingStatus[1]}</h4>
+          <h4
+            style={{
+              color:
+                data.listPrice.amount > 150
+                  ? "red"
+                  : data.listPrice.amount < 20 && "green",
+            }}
+          >
+            {`Price: ${data.listPrice.amount}`}
+          </h4>
+        </section>
       </section>
-      <section>
+      <br />
+      <section className="button-container">
         {data.prevId && (
           <Link to={`/book/${data.prevId}`}>
             <button>PrevBook</button>
