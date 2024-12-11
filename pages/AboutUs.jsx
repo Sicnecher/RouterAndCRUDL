@@ -1,6 +1,6 @@
 const { useState } = React;
 
-export default function Component() {
+export default function AboutUs() {
   const [displayLast, setDisplayLast] = useState(false);
   return (
     <div className="about-container">

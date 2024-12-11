@@ -5,7 +5,7 @@ import BookFilter from "../cmps/book-components/BookFilter.jsx";
 const { useState, useEffect } = React;
 const { Link } = ReactRouterDOM;
 
-export default function Component() {
+export default function BookIndex() {
   const [booksList, setBooksList] = useState([]);
   const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter({ title: '', price: '' }));
 

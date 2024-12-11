@@ -1,5 +1,5 @@
-import { bookService } from "../services/book.service";
-import { showErrorMsg, showSuccessMsg } from "../services/eventBus.service";
+import { bookService } from "../services/book.service.js";
+import { showErrorMsg, showSuccessMsg } from "../services/eventBus.service.js";
 
 const { useState, useEffect } = React;
 const { useParams, useNavigate } = ReactRouterDOM;
