@@ -3,7 +3,8 @@ import { storageService } from "./async-storage.service.js";
 import { books } from "../books.js";
 
 const BOOK_KEY = "bookDB";
-utilService.saveToStorage(BOOK_KEY, books);
+
+initBooks()
 
 export const bookService = {
   query,
@@ -12,6 +13,7 @@ export const bookService = {
   save,
   getDefaultFilter,
   getEmptyBook,
+  getEmptyReview,
   getAllBooks,
 };
 
@@ -42,9 +44,12 @@ function save(book) {
   } else {
     const orderedBook = {
       title: book.title,
+      pageCount: book.pageCount,
+      description: book.description,
       thumbnail: book.thumbnail,
       listPrice: {
         amount: book.price,
+        isOnSale: true,
       },
     };
     return storageService.post(BOOK_KEY, orderedBook);
@@ -55,10 +60,33 @@ function getDefaultFilter(filterBy = { title: "", price: "" }) {
   return { ...filterBy };
 }
 
+function initBooks(){
+  const data = localStorage.getItem(BOOK_KEY)
+  if(!data) utilService.saveToStorage(BOOK_KEY, books);
+}
+
+function getEmptyReview(){
+  const emptyReview = {
+    fullname: '',
+    rating: 5,
+    readAt: new Date()
+  }
+  return emptyReview
+}
+
 function getEmptyBook(
   thumbnail = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Anonymous_emblem.svg/1200px-Anonymous_emblem.svg.png"
 ) {
-  return { thumbnail };
+  const emptyBook = {
+    title: "",
+    price: 0,
+    description: "",
+    pageCount: 0,
+    publishedDate: "",
+    authors: [""],
+    categories: [""],
+  };
+  return { ...emptyBook, thumbnail };
 }
 
 function getAllBooks() {

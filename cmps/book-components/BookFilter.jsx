@@ -12,7 +12,7 @@ export default function BookFilter({ defaultFilter, onSetFilter }) {
   const handleChange = ({ target }) => {
     const { name, value, type } = target;
     const parsedValue = type === "number" ? +value : value;
-    setFilterByToEdit(prevFilter => ({ ...prevFilter, [name]: parsedValue }));
+    setFilterByToEdit((prevFilter) => ({ ...prevFilter, [name]: parsedValue }));
   };
 
   const { title, price } = filterByToEdit;
@@ -21,24 +21,60 @@ export default function BookFilter({ defaultFilter, onSetFilter }) {
     <section className="book-filter">
       <h2>Filter Books</h2>
       <form className="filter-form">
-        <label>
-          Title:
+      <section>
+          <label htmlFor="min-price">Title: </label>
           <input
-            type="text"
+            type="number"
             name="title"
             value={title}
             onChange={handleChange}
           />
-        </label>
-        <label>
-          Price:
+        </section>
+        <section>
+          <label htmlFor="min-price">Min Price: </label>
           <input
             type="number"
-            name="price"
+            name="min-price"
             value={price}
             onChange={handleChange}
           />
-        </label>
+        </section>
+        <section>
+          <label htmlFor="min-price">Max Price: </label>
+          <input
+            type="number"
+            name="min-price"
+            value={price}
+            onChange={handleChange}
+          />
+        </section>
+        <section>
+          <label htmlFor="min-price">Min Price: </label>
+          <input
+            type="number"
+            name="min-price"
+            value={price}
+            onChange={handleChange}
+          />
+        </section>
+        <section>
+          <label htmlFor="min-price">Min Price: </label>
+          <input
+            type="number"
+            name="min-price"
+            value={price}
+            onChange={handleChange}
+          />
+        </section>
+        <section>
+          <label htmlFor="min-price">Min Price: </label>
+          <input
+            type="number"
+            name="min-price"
+            value={price}
+            onChange={handleChange}
+          />
+        </section>
       </form>
     </section>
   );

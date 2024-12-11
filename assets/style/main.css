@@ -318,11 +318,15 @@ a.active {
 
 .button-container {
   display: flex;
-  justify-content: center;
-  button {
-    font-size: 20px;
-    font-weight: bold;
-  }
+  gap: 26px;
+  font-weight: bold;
+  margin-top: 14px;
+  align-items: center;
+}
+
+.button-container h2:hover{
+  cursor: pointer;
+  opacity: 0.75;
 }
 
 .book-data {
@@ -390,6 +394,39 @@ a.active {
     border: none;
     border-bottom: 1px solid black;
   }
+}
+
+.book-add form{
+  background-color: bisque;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  gap: 12px;
+  section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+
+.rating-container{
+  display: flex;
+}
+
+.rating-field{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.details-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media (max-width: 720px) {
