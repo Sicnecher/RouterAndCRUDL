@@ -7,12 +7,8 @@ export default function BookFilter({ defaultFilter, onSetFilter }) {
   const rangeRef = useRef();
 
   useEffect(() => {
-    console.log(filterByToEdit);
-  }, [])
-
-  useEffect(() => {
     debouncedFilter(filterByToEdit);
-  }, [filterByToEdit, debouncedFilter]);
+  }, [filterByToEdit]);
 
   const handleChange = ({ target }) => {
     const { name, value, type } = target;
@@ -29,7 +25,7 @@ export default function BookFilter({ defaultFilter, onSetFilter }) {
       <section>
           <label htmlFor="min-price">Title: </label>
           <input
-            type="number"
+            type="text"
             name="title"
             value={title}
             onChange={handleChange}

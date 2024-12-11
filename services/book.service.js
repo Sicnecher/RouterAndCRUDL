@@ -23,8 +23,11 @@ function query(filterBy = {}) {
       const regExp = new RegExp(filterBy.title, "i");
       books = books.filter((book) => regExp.test(book.title));
     }
-    if (filterBy.price) {
-      books = books.filter((book) => book.listPrice.amount >= filterBy.price);
+    if (filterBy.amount) {
+      books = books.filter((book) => book.listPrice.amount >= filterBy.amount);
+    }
+    if(filterBy.pageCount){
+      books = books.filter((book) => book.pageCount >= filterBy.pageCount)
     }
     return books;
   });
