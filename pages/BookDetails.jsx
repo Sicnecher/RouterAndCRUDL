@@ -97,7 +97,7 @@ export default function BookDetails() {
               onClick={() => setReviewComponent(false)}
               className="bi bi-x-circle"
             ></i>
-            <AddReview />
+            <AddReview bookId={params.bookId} navigate={navigate} />
           </section>
         </section>
         <img

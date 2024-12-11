@@ -15,6 +15,7 @@ export const bookService = {
   getEmptyBook,
   getEmptyReview,
   getAllBooks,
+  addReview,
 };
 
 function query(filterBy = {}) {
@@ -90,6 +91,14 @@ function getEmptyBook(
     categories: [""],
   };
   return { ...emptyBook, thumbnail };
+}
+
+async function addReview(bookId, review) {
+	await get(bookId).then((book) => {
+		book.reviews = [review, ...book.reviews]
+		save(book)
+	})
+	return review
 }
 
 function getAllBooks() {

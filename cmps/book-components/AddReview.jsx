@@ -2,7 +2,7 @@ import { bookService } from "../../services/book.service.js";
 
 const { useState } = React;
 
-export default function AddReview() {
+export default function AddReview({ bookId, navigate }) {
   const [review, setReview] = useState(bookService.getEmptyReview());
 
   function handleChange({ target }) {
@@ -18,6 +18,7 @@ export default function AddReview() {
     }
     if (target.classList[1] == "bi-star-fill" || target.classList[1] == "bi-star") {
       value = parseInt(id);
+      field = "rate";
       console.log("value: ", value);
     }
     setReview((prevReview) => ({ ...prevReview, [field]: value }));
@@ -26,8 +27,10 @@ export default function AddReview() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(event);
+    bookService.addReview(bookId, review);
+    window.location.reload();
   }
+
 
   const { fullname, rate, readAt } = review;
   return (
@@ -64,6 +67,7 @@ export default function AddReview() {
           id="readAt"
         />
       </section>
+      <button>Submit</button>
     </form>
   );
 }
