@@ -51,7 +51,7 @@ export default function BookDetails() {
         <Link to="/">
           <i className="bi bi-list"></i>
         </Link>
-        <Link to="/book/edit">
+        <Link to={`/book/edit/${params.bookId}`}>
           <i class="bi bi-pencil-square"></i>
         </Link>
         <Link to={`/book/${nextId}`}>

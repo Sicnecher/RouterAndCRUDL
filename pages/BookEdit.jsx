@@ -24,7 +24,6 @@ export default function BookEdit() {
 
   function handleChange({ target }) {
     let { value, name: field } = target;
-
     switch (target.type) {
       case "range":
       case "number":
@@ -34,22 +33,32 @@ export default function BookEdit() {
         value = target.checked;
         break;
     }
-  }
+		if (!field.includes(".")) {
+			setBookToEdit((prevBook) => ({ ...prevBook, [field]: value }))
+		} else {
+			const [obj, nested] = field.split(".")
+			setBookToEdit((prevBook) => ({
+				...prevBook,
+				[obj]: { ...prevBook[obj], [nested]: value },
+			}))
+		}  }
 
   function onSaveBook(ev) {
     ev.preventDefault();
     bookService
       .save(bookToEdit)
-      .then(() => navigate("/"))
+      .then(() => navigate(`/book/${bookId}`))
       .then(showSuccessMsg("book has been saved succesfully"))
       .catch((error) => {
         showErrorMsg("error");
       });
   }
 
+  const { subtitle, authors, publishedDate, description, pageCount, categories, language, listPrice } = bookToEdit;
+
   return (
     <section className="book-edit">
-      <form onSubmit={onSaveBook}>
+      <form className="edit-form" onSubmit={onSaveBook}>
         <label htmlFor="title">Title: </label>
         <input
           type="text"
@@ -62,7 +71,7 @@ export default function BookEdit() {
         <textarea
           type="text"
           onChange={handleChange}
-          value={bookToEdit.subtitle}
+          value={subtitle}
           id="subtitle"
           name="subtitle"
         />
@@ -70,7 +79,7 @@ export default function BookEdit() {
         <input
           type="text"
           onChange={handleChange}
-          value={bookToEdit.authors}
+          value={authors}
           id="authors"
           name="authors"
         />
@@ -78,7 +87,7 @@ export default function BookEdit() {
         <input
           type="number"
           onChange={handleChange}
-          value={bookToEdit.publishedDate}
+          value={publishedDate}
           id="publishedDate"
           name="publishedDate"
         />
@@ -86,7 +95,7 @@ export default function BookEdit() {
         <textarea
           type="text"
           onChange={handleChange}
-          value={bookToEdit.description}
+          value={description}
           id="description"
           name="description"
         />
@@ -94,7 +103,7 @@ export default function BookEdit() {
         <input
           type="number"
           onChange={handleChange}
-          value={bookToEdit.pageCount}
+          value={pageCount}
           id="pageCount"
           name="pageCount"
         />
@@ -102,7 +111,7 @@ export default function BookEdit() {
         <input
           type="text"
           onChange={handleChange}
-          value={bookToEdit.categories}
+          value={categories}
           id="categories"
           name="categories"
         />
@@ -110,7 +119,7 @@ export default function BookEdit() {
         <input
           type="text"
           onChange={handleChange}
-          value={bookToEdit.language}
+          value={language}
           id="language"
           name="language"
         />
@@ -118,14 +127,14 @@ export default function BookEdit() {
         <input
           type="number"
           onChange={handleChange}
-          value={bookToEdit.listPrice.amount}
+          value={listPrice.amount}
           id="amount"
           name="listPrice.amount"
         />
         <label htmlFor="currencyCode">Currency: </label>
         <select
           onChange={handleChange}
-          value={bookToEdit.listPrice.currencyCode || "ILS"}
+          value={listPrice.currencyCode || "ILS"}
           id="currencyCode"
           name="listPrice.currencyCode"
         >
@@ -140,12 +149,12 @@ export default function BookEdit() {
           type="checkbox"
           onChange={handleChange}
           id="isOnSale"
-          checked={bookToEdit.listPrice.isOnSale}
-          value={bookToEdit.listPrice.isOnSale}
+          checked={listPrice.isOnSale}
+          value={listPrice.isOnSale}
           name="listPrice.isOnSale"
         />
         <div className="btn-container">
-          <button onClick={onBack}>Back</button>
+          {/* <button onClick={onBack}>Back</button> */}
           <button>Save</button>
         </div>
       </form>

@@ -16,6 +16,7 @@ export const bookService = {
   getEmptyReview,
   getAllBooks,
   addReview,
+  getCurrencyCodes,
 };
 
 function query(filterBy = {}) {
@@ -60,6 +61,21 @@ function save(book) {
   }
 }
 
+function getCurrencyCodes() {
+  return ["USD", "EUR", "ILS"];
+}
+
+function getCurrencyCodeSigh(currencyCode) {
+	switch (currencyCode) {
+		case "ILS":
+			return "₪"
+		case "USD":
+			return "$"
+		case "EUR":
+			return "€"
+	}
+}
+
 function getDefaultFilter(filterBy = { title: "", price: "" }) {
   return { ...filterBy };
 }
@@ -89,6 +105,11 @@ function getEmptyBook(
     publishedDate: "",
     authors: [""],
     categories: [""],
+    listPrice: {
+      amount: 0,
+      currencyCode: "USD",
+      isOnSale: false,
+    },
   };
   return { ...emptyBook, thumbnail };
 }
