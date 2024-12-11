@@ -45,19 +45,18 @@ export default function BookDetails() {
   return (
     <div className="details-container">
       <section className="button-container">
-        {prevId && (
-          <Link to={`/book/${prevId}`}>
-            <i className="bi bi-arrow-left"></i>
-          </Link>
-        )}
+        <Link to={`/book/${prevId}`}>
+          <i className="bi bi-arrow-left"></i>
+        </Link>
         <Link to="/">
           <i className="bi bi-list"></i>
         </Link>
-        {nextId && (
-          <Link to={`/book/${nextId}`}>
-            <i className="bi bi-arrow-right"></i>
-          </Link>
-        )}
+        <Link to="/book/edit">
+          <i class="bi bi-pencil-square"></i>
+        </Link>
+        <Link to={`/book/${nextId}`}>
+          <i className="bi bi-arrow-right"></i>
+        </Link>
       </section>
       {listPrice && listPrice.isOnSale && (
         <div className="onSale-sign">
@@ -93,7 +92,7 @@ export default function BookDetails() {
             ref={bookReviewRef}
           >
             <i
-            style={{ fontSize: 30, cursor: "pointer" }}
+              style={{ fontSize: 30, cursor: "pointer" }}
               onClick={() => setReviewComponent(false)}
               className="bi bi-x-circle"
             ></i>
