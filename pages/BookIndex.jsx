@@ -7,7 +7,7 @@ const { Link } = ReactRouterDOM;
 
 export default function BookIndex() {
   const [booksList, setBooksList] = useState([]);
-  const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter({ title: '', price: '' }));
+  const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter({ title: '', amount: 0, pageCount: 0 }));
 
   useEffect(() => {
     loadBooks();

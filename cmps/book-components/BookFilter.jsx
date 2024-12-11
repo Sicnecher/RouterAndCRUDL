@@ -4,6 +4,11 @@ const { useState, useEffect, useRef } = React;
 export default function BookFilter({ defaultFilter, onSetFilter }) {
   const [filterByToEdit, setFilterByToEdit] = useState(defaultFilter);
   const debouncedFilter = useRef(debounce(onSetFilter, 500)).current;
+  const rangeRef = useRef();
+
+  useEffect(() => {
+    console.log(filterByToEdit);
+  }, [])
 
   useEffect(() => {
     debouncedFilter(filterByToEdit);
@@ -31,49 +36,32 @@ export default function BookFilter({ defaultFilter, onSetFilter }) {
           />
         </section>
         <section>
-          <label htmlFor="min-price">Min Price: </label>
-          <input
-            type="number"
-            name="min-price"
-            value={price}
-            onChange={handleChange}
-          />
+          <label htmlFor="min-price">Min' Price: </label>
+					<input
+						ref={rangeRef}
+						value={filterByToEdit.amount}
+						type="range"
+						max={500}
+						id="price-filter"
+						name="amount"
+						className="price-filter"
+						onChange={handleChange}
+					/>
+          {filterByToEdit.amount}
         </section>
         <section>
-          <label htmlFor="min-price">Max Price: </label>
-          <input
-            type="number"
-            name="min-price"
-            value={price}
-            onChange={handleChange}
-          />
-        </section>
-        <section>
-          <label htmlFor="min-price">Min Price: </label>
-          <input
-            type="number"
-            name="min-price"
-            value={price}
-            onChange={handleChange}
-          />
-        </section>
-        <section>
-          <label htmlFor="min-price">Min Price: </label>
-          <input
-            type="number"
-            name="min-price"
-            value={price}
-            onChange={handleChange}
-          />
-        </section>
-        <section>
-          <label htmlFor="min-price">Min Price: </label>
-          <input
-            type="number"
-            name="min-price"
-            value={price}
-            onChange={handleChange}
-          />
+          <label htmlFor="min-price">Page Count: </label>
+					<input
+						ref={rangeRef}
+						value={filterByToEdit.pageCount}
+						type="range"
+						max={500}
+						id="price-filter"
+						name="pageCount"
+						className="price-filter"
+						onChange={handleChange}
+					/>
+          {filterByToEdit.pageCount}
         </section>
       </form>
     </section>
