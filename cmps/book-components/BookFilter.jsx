@@ -16,7 +16,7 @@ export default function BookFilter({ defaultFilter, onSetFilter }) {
     setFilterByToEdit((prevFilter) => ({ ...prevFilter, [name]: parsedValue }));
   };
 
-  const { title, price } = filterByToEdit;
+  const { title, amount, pageCount } = filterByToEdit;
 
   return (
     <section className="book-filter">
@@ -35,7 +35,7 @@ export default function BookFilter({ defaultFilter, onSetFilter }) {
           <label htmlFor="min-price">Min' Price: </label>
 					<input
 						ref={rangeRef}
-						value={filterByToEdit.amount}
+						value={amount}
 						type="range"
 						max={500}
 						id="price-filter"
@@ -43,13 +43,13 @@ export default function BookFilter({ defaultFilter, onSetFilter }) {
 						className="price-filter"
 						onChange={handleChange}
 					/>
-          {filterByToEdit.amount}
+          {amount}
         </section>
         <section>
           <label htmlFor="min-price">Page Count: </label>
 					<input
 						ref={rangeRef}
-						value={filterByToEdit.pageCount}
+						value={pageCount}
 						type="range"
 						max={500}
 						id="price-filter"
@@ -57,7 +57,7 @@ export default function BookFilter({ defaultFilter, onSetFilter }) {
 						className="price-filter"
 						onChange={handleChange}
 					/>
-          {filterByToEdit.pageCount}
+          {pageCount}
         </section>
       </form>
     </section>

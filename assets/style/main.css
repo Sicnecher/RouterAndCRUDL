@@ -296,16 +296,17 @@ a.active {
   border-radius: 10px;
   background: linear-gradient(
     to right bottom,
-    rgb(204, 131, 42),
-    rgb(224, 78, 78),
+    rgb(202, 196, 188),
+    rgb(158, 95, 95),
     rgb(204, 131, 42)
   );
+  border: 1px solid black;
   width: 80vw;
 }
 
 .sub-data {
   display: flex;
-  background-color: brown;
+  background-color: rgb(154, 128, 128);
   padding: 6px;
   padding-right: 120px;
   padding-left: 120px;
@@ -324,7 +325,7 @@ a.active {
   align-items: center;
 }
 
-.button-container h2:hover{
+.button-container h2:hover {
   cursor: pointer;
   opacity: 0.75;
 }
@@ -396,7 +397,7 @@ a.active {
   }
 }
 
-.book-add form{
+.book-add form {
   background-color: bisque;
   display: flex;
   flex-wrap: wrap;
@@ -404,7 +405,7 @@ a.active {
   justify-content: center;
   padding: 15px;
   gap: 12px;
-  section{
+  section {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -413,20 +414,73 @@ a.active {
   }
 }
 
-.rating-container{
+.rating-container {
   display: flex;
 }
 
-.rating-field{
+.rating-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.details-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.details-container{
+.filter-form > section {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.button-container {
+  i {
+    font-size: 30px;
+    transition: font-size 0.25s, opacity 0.25s;
+  }
+}
+
+.button-container i:hover {
+  font-size: 25px;
+  opacity: 0.75;
+}
+
+.reviews-container ol{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.add-review-button{
+  h4{
+    font-size: 20px;
+    font-weight: bold;
+  }
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: opacity 0.25s;
+}
+
+.add-review-button:hover{
+  cursor: pointer;
+  opacity: 0.75;
+}
+
+.review-form{
+  display: flex;
+  gap: 18px;
+  font-weight: bold;
+  font-size: 20px;
+  input{
+    background: none;
+    border: none;
+    border-bottom: 1px solid black;
+  }
 }
 
 @media (max-width: 720px) {

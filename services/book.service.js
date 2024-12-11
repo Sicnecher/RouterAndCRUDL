@@ -71,7 +71,7 @@ function initBooks(){
 function getEmptyReview(){
   const emptyReview = {
     fullname: '',
-    rating: 5,
+    rate: 2,
     readAt: new Date()
   }
   return emptyReview
