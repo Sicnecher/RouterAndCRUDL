@@ -497,6 +497,37 @@ a.active {
   background-color: bisque;
 }
 
+.user-msg {
+	width: 30vh;
+	font-size: 1em;
+	/* height: 80px; */
+	text-align: center;
+	color: rgb(255, 255, 255);
+	position: fixed;
+	background-color: gainsboro;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	bottom: 20px;
+	left: 20px;
+	border-radius: 12px;
+	padding: 5px 10px;
+	text-shadow: 1px 1px 2px rgb(0, 0, 0);
+	box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.user-msg a {
+	margin: 0 10px;
+}
+
+.success {
+	background-color: rgb(123, 221, 123);
+}
+
+.error {
+	background-color: rgb(255, 125, 125);
+}
+
 @media (max-width: 720px) {
   .app-header {
     color: var(--clr2bg-light);

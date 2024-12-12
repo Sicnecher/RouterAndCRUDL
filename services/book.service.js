@@ -20,15 +20,6 @@ export const bookService = {
   addGoogleBook,
 };
 
-async function getGoogleBooks() {
-	await googleService
-		.query()
-		.then((books) => {
-			return books.items
-		})
-		.catch((err) => console.error("could not get books from google api " + err))
-}
-
 async function addGoogleBook(gBook) {
 	const book = getGoogleBookFormat(gBook)
 	// console.log(book)
