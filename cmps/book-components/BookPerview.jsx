@@ -19,13 +19,13 @@ export default function BookPerview({
         <div className="overlay-text">{`Description: ${shortDescription}`}</div>
       </div>
       <br />
-      <section className="buttons-container">
-      <i className="bi bi-trash3" onClick={() => removeBook(bookData.id)}></i>
+      <section style={{background: "white", padding: 10, borderRadius: 10}} className="buttons-container">
+      <i style={{color: 'black'}} className="bi bi-trash3" onClick={() => removeBook(bookData.id)}></i>
         <Link to={`/book/${bookData.id}`}>
           <div>Details</div>
         </Link>
         <Link to={`/book/edit/${bookData.id}`}>
-          <i className="bi bi-pencil-square"></i>
+          <i style={{color: 'black'}} className="bi bi-pencil-square"></i>
         </Link>
       </section>
     </section>

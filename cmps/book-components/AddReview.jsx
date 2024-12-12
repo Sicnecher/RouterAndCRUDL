@@ -28,8 +28,10 @@ export default function AddReview({ bookId, navigate }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
-     await bookService.addReview(bookId, review)
-    navigate(`/`);
+    await bookService.addReview(bookId, review);
+    setTimeout(() => {
+      window.location.reload();
+    }, 250);
   }
 
   const { fullname, rate, readAt } = review;
