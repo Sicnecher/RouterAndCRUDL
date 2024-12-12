@@ -94,7 +94,7 @@ function remove(bookId) {
 
 function save(book, isEdit = true) {
 	if (book.id && isEdit) {
-		return storageService.put(STORAGE_KEY, book)
+		return storageService.put(BOOK_KEY, book)
 	} else {
 		if (book.categories && book.categories.typeof !== "object") {
 			book.categories = book.categories.slice(", ")
@@ -162,6 +162,7 @@ function getEmptyBook(
 async function addReview(bookId, review) {
 	await get(bookId).then((book) => {
 		book.reviews = [review, ...book.reviews]
+    console.log(book)
 		save(book)
 	})
 	return review

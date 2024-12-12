@@ -53,7 +53,7 @@ export default function BookDetails() {
           <i className="bi bi-list"></i>
         </Link>
         <Link to={`/book/edit/${params.bookId}`}>
-          <i class="bi bi-pencil-square"></i>
+          <i className="bi bi-pencil-square"></i>
         </Link>
         <Link to={`/book/${nextId}`}>
           <i className="bi bi-arrow-right"></i>
@@ -85,7 +85,7 @@ export default function BookDetails() {
             onClick={() => setReviewComponent(true)}
           >
             <h4>Add Review</h4>
-            <i class="bi bi-plus-circle"></i>
+            <i className="bi bi-plus-circle"></i>
           </div>
           <section
             className="add-review-container"
