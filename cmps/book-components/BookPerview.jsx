@@ -6,9 +6,6 @@ export default function BookPerview({
   shortDescription,
   removeBook,
 }) {
-  useEffect(() => {
-    console.log(bookData.listPrice);
-  }, []);
 
   return (
     <section key={bookData.id} className="book-home-container">

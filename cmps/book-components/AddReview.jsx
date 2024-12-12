@@ -19,10 +19,8 @@ export default function AddReview({ bookId, navigate }) {
     if (target.classList[1] == "bi-star-fill" || target.classList[1] == "bi-star") {
       value = parseInt(id);
       field = "rate";
-      console.log("value: ", value);
     }
     setReview((prevReview) => ({ ...prevReview, [field]: value }));
-    console.log(review)
   }
 
   function handleSubmit(event) {

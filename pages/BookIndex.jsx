@@ -44,10 +44,10 @@ export default function BookIndex() {
     <div className="bookIndex-container">
       <BookFilter defaultFilter={filterBy} onSetFilter={onSetFilter} />
       <GoogleSearch setNewGoogleBook={setNewGoogleBook} Books={booksList} />
-      <BooksList list={booksList} removeBook={removeBook} />
       <Link to="/book/add">
         <button>Add Book</button>
       </Link>
+      <BooksList list={booksList} removeBook={removeBook} />
     </div>
   );
 }

@@ -18,7 +18,6 @@ export default function GoogleSearch({ setNewGoogleBook, Books = [] }) {
   }, [titleToSearch]);
 
   useEffect(() => {
-    // console.log(searchResults)
   }, [searchResults]);
 
   function saveGoogleBook(book) {
@@ -33,7 +32,6 @@ export default function GoogleSearch({ setNewGoogleBook, Books = [] }) {
         .addGoogleBook(book)
         .then((book) => {
           setNewGoogleBook(book);
-          console.log("here3");
         })
         .then(showSuccessMsg("book saved successfully"))
         .catch((err) => {

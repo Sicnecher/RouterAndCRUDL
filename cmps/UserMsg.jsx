@@ -6,7 +6,6 @@ export default function UserMsg() {
   useEffect(() => {
     const unsubscribe = eventBusService.on("show-user-msg", (data) => {
       setMessage(data);
-      console.log("sknbskjfbskdfbk");
       setTimeout(() => {
         setMessage(false);
       }, 2500);

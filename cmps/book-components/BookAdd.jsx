@@ -8,12 +8,7 @@ export default function BookAdd() {
   const navigate = useNavigate();
   const { bookId } = useParams();
 
-  useEffect(() => {
-    console.log(bookToAdd)
-  }, [])
-
   function handleChange({ target }) {
-    console.log(target)
     let { value, title: field } = target;
     switch (target.type) {
       case "range":
@@ -29,7 +24,6 @@ export default function BookAdd() {
 
   function onSaveBook(ev) {
     ev.preventDefault();
-    console.log(bookToAdd);
     bookService
       .save(bookToAdd)
       .then(() => navigate("/"))
