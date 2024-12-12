@@ -175,7 +175,7 @@ input:focus {
 .home {
   font-size: 1em;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 14px;
   margin: 10px;
 }
@@ -317,15 +317,15 @@ a.active {
   margin-bottom: 15px;
 }
 
-.button-container {
+.buttons-container {
   display: flex;
-  gap: 26px;
   font-weight: bold;
   margin-top: 14px;
   align-items: center;
+  gap: 14px;
 }
 
-.button-container h2:hover {
+.buttons-container h2:hover {
   cursor: pointer;
   opacity: 0.75;
 }
@@ -432,14 +432,14 @@ a.active {
   align-items: center;
 }
 
-.button-container {
+.buttons-container {
   i {
     font-size: 30px;
     transition: font-size 0.25s, opacity 0.25s;
   }
 }
 
-.button-container i:hover {
+.buttons-container i:hover {
   font-size: 25px;
   opacity: 0.75;
 }

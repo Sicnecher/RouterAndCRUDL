@@ -45,11 +45,11 @@ export default function BookDetails() {
   } = data;
   return (
     <div className="details-container">
-      <section className="button-container">
+      <section className="buttons-container">
         <Link to={`/book/${prevId}`}>
           <i className="bi bi-arrow-left"></i>
         </Link>
-        <Link to="/">
+        <Link to="/books">
           <i className="bi bi-list"></i>
         </Link>
         <Link to={`/book/edit/${params.bookId}`}>

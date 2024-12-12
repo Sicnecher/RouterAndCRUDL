@@ -8,7 +8,9 @@ export default function BookPerview({
 }) {
   return (
     <section key={bookData.id} className="book-home-container">
-      <h4>Title: <LongTxt txt={bookData.title} /></h4>
+      <h4>
+        Title: <LongTxt txt={bookData.title} />
+      </h4>
       <div className="image-container">
         <img src={bookData.thumbnail} alt="book_image" />
         {bookData.listPrice.isOnSale && (
@@ -18,9 +20,12 @@ export default function BookPerview({
       </div>
       <br />
       <section className="buttons-container">
-        <button onClick={() => removeBook(bookData.id)}>Remove</button>
+      <i className="bi bi-trash3" onClick={() => removeBook(bookData.id)}></i>
         <Link to={`/book/${bookData.id}`}>
-          <button>Details</button>
+          <div>Details</div>
+        </Link>
+        <Link to={`/book/edit/${bookData.id}`}>
+          <i className="bi bi-pencil-square"></i>
         </Link>
       </section>
     </section>
