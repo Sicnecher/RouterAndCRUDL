@@ -14,10 +14,7 @@ export default function BookPerview({
     <section key={bookData.id} className="book-home-container">
       <h1>{`Title: ${bookData.title}`}</h1>
       {bookData.listPrice.isOnSale && (
-        <img
-          src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngwing.com%2Fen%2Fsearch%3Fq%3Dsale&psig=AOvVaw2qjBpiRUamhEMSxDSbroly&ust=1734019885279000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCNjtpdaNoIoDFQAAAAAdAAAAABAE"
-          className="sale-tag"
-        />
+        <h2>On Sale!</h2>
       )}
       <div className="image-container">
         <img src={bookData.thumbnail} alt="book_image" />

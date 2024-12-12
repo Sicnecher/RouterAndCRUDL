@@ -23,11 +23,16 @@ export default function BookIndex() {
     setBooksList((prevBooks) => prevBooks.filter((book) => book.id !== bookId));
   };
 
+  function setNewGoogleBook(book) {
+		setBooks((books) => [...books, book])
+	}
+
   const onSetFilter = (filter) => setFilterBy((prevFilter) => ({ ...prevFilter, ...filter }));
 
   return (
     <div className="bookIndex-container">
       <BookFilter defaultFilter={filterBy} onSetFilter={onSetFilter} />
+      <GoogleSearch setNewGoogleBook={setNewGoogleBook} Books={books}/>
       <BooksList list={booksList} removeBook={removeBook} />
       <Link to="/book/add"><button>Add Book</button></Link>
     </div>
