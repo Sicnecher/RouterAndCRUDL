@@ -160,6 +160,7 @@ function getEmptyBook(
 
 async function addReview(bookId, review) {
   await get(bookId).then((book) => {
+    if (!book.reviews) book.reviews = [];
     book.reviews = [review, ...book.reviews];
     console.log(book);
     save(book);

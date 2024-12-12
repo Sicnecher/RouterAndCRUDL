@@ -1,7 +1,9 @@
 const { useState, useEffect } = React
 
-export default function LongTxt({ txt = " ", length = 60 }) {
+export default function LongTxt({ title = false, txt = " ", length = 100 }) {
 	const [isLong, setIsLong] = useState(false)
+
+    if(title === true) length = 20
 
 	function toggleIsLong() {
 		setIsLong((long) => !long)

@@ -9,7 +9,7 @@ export default function BookPerview({
   return (
     <section key={bookData.id} className="book-home-container">
       <h4>
-        Title: <LongTxt txt={bookData.title} />
+        Title: <LongTxt title={true} txt={bookData.title} />
       </h4>
       <div className="image-container">
         <img src={bookData.thumbnail} alt="book_image" />
