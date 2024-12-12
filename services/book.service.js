@@ -4,7 +4,7 @@ import { books } from "../books.js";
 
 const BOOK_KEY = "bookDB";
 
-initBooks()
+initBooks();
 
 export const bookService = {
   query,
@@ -21,51 +21,50 @@ export const bookService = {
 };
 
 async function addGoogleBook(gBook) {
-	const book = getGoogleBookFormat(gBook)
-	// console.log(book)
+  const book = getGoogleBookFormat(gBook);
 
-	await save(book, false)
-	return book
+  await save(book, false);
+  return book;
 }
 
 function getGoogleBookFormat(gBook) {
-	const currencyCode = getCurrencyCodes()
-	const {
-		id,
-		volumeInfo: {
-			title,
-			subtitle = "",
-			authors,
-			publishedDate,
-			description,
-			pageCount,
-			categories,
-			imageLinks: { thumbnail, smallThumbnail },
-			language,
-		},
-	} = gBook
+  const currencyCode = getCurrencyCodes();
+  const {
+    id,
+    volumeInfo: {
+      title,
+      subtitle = "",
+      authors,
+      publishedDate,
+      description,
+      pageCount,
+      categories,
+      imageLinks: { thumbnail, smallThumbnail },
+      language,
+    },
+  } = gBook;
 
-
-	return {
-		id: id,
-		title: title,
-		subtitle: subtitle,
-		authors: authors,
-		publishedDate: publishedDate,
-		description: description,
-		pageCount: pageCount,
-		categories: categories,
-		thumbnail:
-			thumbnail ||
-			smallThumbnail ||
-			"./assets/img/BooksImages/" + Math.ceil(Math.random() * 20) + ".jpg",
-		language: language,
-		listPrice: {
-			amount: utilService.getRandomIntInclusive(30, 500),
-			currencyCode: currencyCode[Math.floor(Math.random() * 3)],
-			isOnSale: Math.random() > 0.7,
-		},
-	}
+  return {
+    id: id,
+    title: title,
+    subtitle: subtitle,
+    authors: authors,
+    publishedDate: publishedDate,
+    description: description,
+    pageCount: pageCount,
+    categories: categories,
+    reviews: [],
+    thumbnail:
+      thumbnail ||
+      smallThumbnail ||
+      "./assets/img/BooksImages/" + Math.ceil(Math.random() * 20) + ".jpg",
+    language: language,
+    listPrice: {
+      amount: utilService.getRandomIntInclusive(30, 500),
+      currencyCode: currencyCode[Math.floor(Math.random() * 3)],
+      isOnSale: Math.random() > 0.7,
+    },
+  };
 }
 
 function query(filterBy = {}) {
@@ -77,8 +76,8 @@ function query(filterBy = {}) {
     if (filterBy.amount) {
       books = books.filter((book) => book.listPrice.amount >= filterBy.amount);
     }
-    if(filterBy.pageCount){
-      books = books.filter((book) => book.pageCount >= filterBy.pageCount)
+    if (filterBy.pageCount) {
+      books = books.filter((book) => book.pageCount >= filterBy.pageCount);
     }
     return books;
   });
@@ -93,17 +92,17 @@ function remove(bookId) {
 }
 
 function save(book, isEdit = true) {
-	if (book.id && isEdit) {
-		return storageService.put(BOOK_KEY, book)
-	} else {
-		if (book.categories && book.categories.typeof !== "object") {
-			book.categories = book.categories.slice(", ")
-		}
-		if (!book.thumbnail)
-			book.thumbnail =
-				"/assets/img/BooksImages/" + Math.ceil(Math.random() * 20) + ".jpg"
-		return storageService.post(BOOK_KEY, book)
-	}
+  if (book.id && isEdit) {
+    return storageService.put(BOOK_KEY, book);
+  } else {
+    if (book.categories && book.categories.typeof !== "object") {
+      book.categories = book.categories.slice(", ");
+    }
+    if (!book.thumbnail)
+      book.thumbnail =
+        "/assets/img/BooksImages/" + Math.ceil(Math.random() * 20) + ".jpg";
+    return storageService.post(BOOK_KEY, book);
+  }
 }
 
 function getCurrencyCodes() {
@@ -111,32 +110,32 @@ function getCurrencyCodes() {
 }
 
 function getCurrencyCodeSigh(currencyCode) {
-	switch (currencyCode) {
-		case "ILS":
-			return "₪"
-		case "USD":
-			return "$"
-		case "EUR":
-			return "€"
-	}
+  switch (currencyCode) {
+    case "ILS":
+      return "₪";
+    case "USD":
+      return "$";
+    case "EUR":
+      return "€";
+  }
 }
 
 function getDefaultFilter(filterBy = { title: "", price: "" }) {
   return { ...filterBy };
 }
 
-function initBooks(){
-  const data = localStorage.getItem(BOOK_KEY)
-  if(!data) utilService.saveToStorage(BOOK_KEY, books);
+function initBooks() {
+  const data = localStorage.getItem(BOOK_KEY);
+  if (!data) utilService.saveToStorage(BOOK_KEY, books);
 }
 
-function getEmptyReview(){
+function getEmptyReview() {
   const emptyReview = {
-    fullname: '',
+    fullname: "",
     rate: 2,
-    readAt: new Date()
-  }
-  return emptyReview
+    readAt: new Date(),
+  };
+  return emptyReview;
 }
 
 function getEmptyBook(
@@ -160,12 +159,12 @@ function getEmptyBook(
 }
 
 async function addReview(bookId, review) {
-	await get(bookId).then((book) => {
-		book.reviews = [review, ...book.reviews]
-    console.log(book)
-		save(book)
-	})
-	return review
+  await get(bookId).then((book) => {
+    book.reviews = [review, ...book.reviews];
+    console.log(book);
+    save(book);
+  });
+  return review;
 }
 
 function getAllBooks() {

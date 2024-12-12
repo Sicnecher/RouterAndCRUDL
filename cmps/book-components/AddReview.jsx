@@ -16,19 +16,21 @@ export default function AddReview({ bookId, navigate }) {
         value = target.checked;
         break;
     }
-    if (target.classList[1] == "bi-star-fill" || target.classList[1] == "bi-star") {
+    if (
+      target.classList[1] == "bi-star-fill" ||
+      target.classList[1] == "bi-star"
+    ) {
       value = parseInt(id);
       field = "rate";
     }
     setReview((prevReview) => ({ ...prevReview, [field]: value }));
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    bookService.addReview(bookId, review);
-    window.location.reload();
+     await bookService.addReview(bookId, review)
+    navigate(`/`);
   }
-
 
   const { fullname, rate, readAt } = review;
   return (
@@ -50,7 +52,7 @@ export default function AddReview({ bookId, navigate }) {
           <div title="rating" className="rate-star" onClick={handleChange}>
             <i
               id={`${idx + 1}`}
-              className={ rate >= idx+1 ? "bi bi-star-fill" : "bi bi-star"}
+              className={rate >= idx + 1 ? "bi bi-star-fill" : "bi bi-star"}
             ></i>
           </div>
         ))}

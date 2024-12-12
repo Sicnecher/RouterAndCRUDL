@@ -32,7 +32,7 @@ export default function BookDetails() {
   }
 
   if (!data) return <h1>Loading...</h1>;
-
+  console.log(data);
   const {
     title,
     description,
@@ -71,7 +71,7 @@ export default function BookDetails() {
           <section className="reviews-container">
             <h3>Reviews:</h3>
             <ol>
-              {reviews.map(({ fullname, rate, readAt }) => (
+              {reviews && reviews.map(({ fullname, rate, readAt }) => (
                 <li>
                   <h4>{`Full Name: ${fullname}`}</h4>
                   <h4>{`Rating: ${rate}`}</h4>
