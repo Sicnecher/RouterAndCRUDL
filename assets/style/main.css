@@ -528,6 +528,54 @@ a.active {
 	background-color: rgb(255, 125, 125);
 }
 
+.home{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h1{
+    font-size: 50px;
+    font-weight: bold;
+    background-color: rgb(132, 145, 140);
+    padding:10px;
+    border-radius: 10px;
+    box-shadow: 0px 01px 1px 1px black;
+  }
+  h2{
+    font-size: 30px;
+    font-weight: bold;
+    padding:10px;
+  }
+  h4{
+    font-size: 20px;
+    font-weight: bold;
+    padding:10px;
+  }
+}
+
+.book-list{
+  display: grid;
+}
+
+.book-home-container{
+  background-color: rgb(132, 145, 140);
+}
+
+.image-container {
+  position: relative;
+}
+
+.on-sale-text {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(255, 0, 0, 0.7);
+  color: white;
+  padding: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 1;
+}
+
 @media (max-width: 720px) {
   .app-header {
     color: var(--clr2bg-light);

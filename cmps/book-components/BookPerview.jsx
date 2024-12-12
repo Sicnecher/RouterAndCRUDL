@@ -1,20 +1,19 @@
+import LongTxt from "../LongTxt";
 const { Link } = ReactRouterDOM;
-const { useEffect } = React;
 
 export default function BookPerview({
   bookData,
   shortDescription,
   removeBook,
 }) {
-
   return (
     <section key={bookData.id} className="book-home-container">
-      <h1>{`Title: ${bookData.title}`}</h1>
-      {bookData.listPrice.isOnSale && (
-        <h2>On Sale!</h2>
-      )}
+      <h4>Title: <LongTxt txt={bookData.title} /></h4>
       <div className="image-container">
         <img src={bookData.thumbnail} alt="book_image" />
+        {bookData.listPrice.isOnSale && (
+          <div className="on-sale-text">On Sale</div>
+        )}
         <div className="overlay-text">{`Description: ${shortDescription}`}</div>
       </div>
       <br />
