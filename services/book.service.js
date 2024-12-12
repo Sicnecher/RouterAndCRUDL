@@ -17,7 +17,65 @@ export const bookService = {
   getAllBooks,
   addReview,
   getCurrencyCodes,
+  addGoogleBook,
 };
+
+async function getGoogleBooks() {
+	await googleService
+		.query()
+		.then((books) => {
+			return books.items
+		})
+		.catch((err) => console.error("could not get books from google api " + err))
+}
+
+async function addGoogleBook(gBook) {
+	const book = getGoogleBookFormat(gBook)
+	// console.log(book)
+
+	await save(book, false)
+	return book
+}
+
+function getGoogleBookFormat(gBook) {
+	const currencyCode = getCurrencyCodes()
+	const {
+		id,
+		volumeInfo: {
+			title,
+			subtitle = "",
+			authors,
+			publishedDate,
+			description,
+			pageCount,
+			categories,
+			imageLinks: { thumbnail, smallThumbnail },
+			language,
+		},
+	} = gBook
+
+
+	return {
+		id: id,
+		title: title,
+		subtitle: subtitle,
+		authors: authors,
+		publishedDate: publishedDate,
+		description: description,
+		pageCount: pageCount,
+		categories: categories,
+		thumbnail:
+			thumbnail ||
+			smallThumbnail ||
+			"./assets/img/BooksImages/" + Math.ceil(Math.random() * 20) + ".jpg",
+		language: language,
+		listPrice: {
+			amount: utilService.getRandomIntInclusive(30, 500),
+			currencyCode: currencyCode[Math.floor(Math.random() * 3)],
+			isOnSale: Math.random() > 0.7,
+		},
+	}
+}
 
 function query(filterBy = {}) {
   return storageService.query(BOOK_KEY).then((books) => {
@@ -43,22 +101,18 @@ function remove(bookId) {
   return storageService.remove(BOOK_KEY, bookId);
 }
 
-function save(book) {
-  if (book.id) {
-    return storageService.put(BOOK_KEY, book);
-  } else {
-    const orderedBook = {
-      title: book.title,
-      pageCount: book.pageCount,
-      description: book.description,
-      thumbnail: book.thumbnail,
-      listPrice: {
-        amount: book.price,
-        isOnSale: true,
-      },
-    };
-    return storageService.post(BOOK_KEY, orderedBook);
-  }
+function save(book, isEdit = true) {
+	if (book.id && isEdit) {
+		return storageService.put(STORAGE_KEY, book)
+	} else {
+		if (book.categories && book.categories.typeof !== "object") {
+			book.categories = book.categories.slice(", ")
+		}
+		if (!book.thumbnail)
+			book.thumbnail =
+				"/assets/img/BooksImages/" + Math.ceil(Math.random() * 20) + ".jpg"
+		return storageService.post(BOOK_KEY, book)
+	}
 }
 
 function getCurrencyCodes() {

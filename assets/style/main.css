@@ -492,6 +492,11 @@ a.active {
   }
 }
 
+.result:hover {
+  cursor: pointer;
+  background-color: bisque;
+}
+
 @media (max-width: 720px) {
   .app-header {
     color: var(--clr2bg-light);

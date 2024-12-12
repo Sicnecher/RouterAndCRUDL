@@ -1,7 +1,10 @@
-import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js"
+import { showErrorMsg, showSuccessMsg } from "../services/eventBus.service.js"
+import { debounce } from "../services/util.service.js"
+import { googleService } from "../services/GoogleBook.service.js"
+import { bookService } from "../services/book.service.js"
 const { useState, useEffect, useRef } = React
 
-export function BookAdd({ setNewGoogleBook, Books }) {
+export default function GoogleSearch({ setNewGoogleBook, Books = [] }) {
 	const [titleToSearch, setTitleToSearch] = useState("")
 	const [searchResults, setSearchResults] = useState([])
 	const onSetTitleDebounce = useRef(debounce(getGoogleBooks)).current
@@ -28,7 +31,10 @@ export function BookAdd({ setNewGoogleBook, Books }) {
 		) {
 			bookService
 				.addGoogleBook(book)
-				.then((book) => setNewGoogleBook(book))
+				.then((book) => {
+					setNewGoogleBook(book)
+					console.log('here3')
+				})
 				.then(showSuccessMsg("book saved successfully"))
 				.catch((err) => {
 					showErrorMsg("could not save this book")

@@ -37,7 +37,8 @@ function put(entityType, updatedEntity) {
     const idx = entities.findIndex((entity) => entity.id === updatedEntity.id);
     if (idx < 0)
       throw new Error(
-        `Update failed, cannot find entity with id: ${entityId} in: ${entityType}`
+        // `Update failed, cannot find entity with id: ${entityId} in: ${entityType}`
+        'sdksdnsdkmk'
       );
     const entityToUpdate = { ...entities[idx], ...updatedEntity };
     entities.splice(idx, 1, entityToUpdate);

@@ -1,5 +1,6 @@
 import { bookService } from "../services/book.service.js";
 import AddReview from "../cmps/book-components/AddReview.jsx";
+import LongTxt from "../cmps/LongTxt.jsx";
 const { useParams, Link, useNavigate } = ReactRouterDOM;
 const { useEffect, useState, useRef } = React;
 
@@ -66,7 +67,7 @@ export default function BookDetails() {
       <section className="book-card-container">
         <section className="book-data">
           <h1>{`Title: "${title}"`}</h1>
-          <h4>{`Description: "${description}"`}</h4>
+          <h4>Description: <LongTxt txt={description} /></h4>
           <section className="reviews-container">
             <h3>Reviews:</h3>
             <ol>
